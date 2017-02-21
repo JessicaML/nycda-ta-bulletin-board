@@ -1,13 +1,12 @@
+//- include the application.pug file
 extends ../application.pug
 
 block content
   .container
     .card.card-block
       .row
-        .col-md-4.hidden-md-down
         .col-xs-12.col-md-8
+          //- gets title of the notice to display
           h2= notice.title
+          //- gets body of the notice to display
           h5= notice.body
-          .row
-            .col-xs-3
-              form(action="/notices/" + notice.id method="POST")
