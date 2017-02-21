@@ -1,0 +1,21 @@
+extends ../application.pug
+
+block content
+  .container
+    h1 Bulletin board
+    hr
+    each notice in notices
+      .card.card-block
+        .row
+          .col-md-4.hidden-md-down
+          .col-xs-12.col-md-8
+            a(href="/notices/" + notice.id)
+              h2= notice.title
+            h5= notice.id
+            p= notice.body
+            .row
+              .col-xs-3
+                form(action="/notices/" + notice.id method="POST")
+                  //- input(type="hidden" name="_method" value="DELETE")
+                  //- input(type="hidden" name="_method" value="EDIT")
+                  button(type="submit" class="btn btn-danger btn-block" data-notice=notice.id) DELETE
