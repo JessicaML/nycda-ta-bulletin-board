@@ -21,24 +21,40 @@ var notice = sequelize.define('notice', {
     body: Sequelize.TEXT
 });
 
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }})
+);
+
 //use morgan middleware to print HTTP requests to help with debugging
 app.use(morgan('dev'));
 
 //In order to parse a text input from a user, we need bodyParser to convert the data to a JavaScript string
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }})
+);
+
 //setting the view engine as pug - pug files render to html
 app.set('view engine', 'pug');
 
 //use noticesRouter variable
-app.use('/add-notice', noticesRouter);
+app.use('/notices', noticesRouter);
 
 //get request to redirect the 'homepage' to the notices route
 
 //1. go to route notices.js, go to the app.get('/') in the
 //notices.js file
 app.get('/', (request, response) => {
-  response.redirect('/add-notice');
+  response.redirect('/notices');
 });
 
 //get request to /board route
