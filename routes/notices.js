@@ -41,7 +41,6 @@ router.delete('/:id', (request, response) => {
   });
 });
 
-//gets edit post page
 router.get('/:id/edit', (req, res) => {
   notice.findOne({
     where: {
