@@ -5,8 +5,8 @@ block content
   .container
     h1 New post
     hr
-    //- post request to /new-notice in index.js file
-    form(action="/new-notice/" method="POST")
+      //- post request to /new-notice in index.js file
+    form(action="/notices/" method="POST")
       div(class="form-group")
         label(for="notice-title") Title
         //- name attribute adds the input to column name "title"
@@ -17,3 +17,4 @@ block content
         textarea(name="body" class="form-control" rows=5 id="notice-body")
       div(class="form-group text-xs-right")
         button(type="submit" class="btn btn-lg btn-success") Submit
+
